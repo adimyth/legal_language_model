@@ -1,0 +1,6 @@
+# ignore
+*.csv
+*.pkl
+.env
+.idea/
+*.pth

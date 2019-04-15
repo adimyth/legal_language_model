@@ -1,0 +1,14 @@
+name: lang_model
+channels:
+  - conda-forge
+  - anaconda
+dependencies:
+  - python==3.6
+  - sqlalchemy
+  - jupyter_contrib_nbextensions
+  - pip:
+      - python-dotenv
+      - pandas
+      - psycopg2-binary
+      - jupyter
+      - fastai
