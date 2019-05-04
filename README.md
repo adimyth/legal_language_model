@@ -46,39 +46,39 @@ python scripts/LanguageModelling.py --type predict --sent "It is therefore the d
 After training for 10 epochs, I got an accuracy of **0.49**, which implies that the model is able to predict every second word correctly, which is cool.
 The highlighted/bold section represents the predicted sentences.
 
-```
+<pre>
 Example 1
 Sentence: The jurisdiction  of the High Court
 Num of words: 5
-The jurisdiction  of the High Court **in the case of**
+The jurisdiction  of the High Court <b>in the case of</b>
 
 
 Example 2
 Sentence: The  fixed monthly allowance
 Num of words: 5
-The  fixed monthly allowance **payable to the assessee**
+The  fixed monthly allowance <b>payable to the assessee</b>
 
 
 Example 3
 Sentence: It is therefore the duty
 Num of words: 5
-It is therefore the duty **of the Court**
+It is therefore the duty <b>of the Court</b>
 
 
 Example 4
 Sentence: The jurisdiction  of the High Court
 Num of words: 10
-The jurisdiction  of the High Court **to interfere with the findings of fact arrived at**
+The jurisdiction  of the High Court <b>to interfere with the findings of fact arrived at</b>
 
 
 Example 5
 Sentence: It is therefore the duty
 Num of words: 10
-It is therefore the duty **of the High Court to set aside**
+It is therefore the duty <b>of the High Court to set aside</b>
 
 
 Example 6
 Sentence: The  fixed monthly allowance
 Num of words: 10
-The  fixed monthly allowance **of Rs . 85 / - per month**
-```
+The  fixed monthly allowance <b>of Rs . 85 / - per month</b>
+</pre>
