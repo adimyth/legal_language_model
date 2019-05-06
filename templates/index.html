@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+
+    <!-- header -->
+    <nav>
+        <div class="nav-wrapper white">
+            <a href="#" class="brand-logo center">Logo</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+            </ul>
+        </div>
+    </nav>
+
+    <!-- about -->
+    <div class="row">
+        <div class="col s12 m6 offset-m3">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title pink-text accent-1">Language Modelling</span>
+                    <p class="blue-text darken-4">
+                        Language Modeling and LM for short, is the development of probabilistic models that are able to
+                        predict the next word in the sequence given the words that precede it.
+                        Simpler models may look at a context of a short sequence of words, whereas larger models may
+                        work at the level of sentences or paragraphs.<br>
+                        In the textbox below, pass in a sentence & the model would try to predict the next few words.
+                        Enjoy!!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- textinput -->
+    <div class="row">
+        <form class="col s12" method="POST" id="form">
+            <div class="col m6 s12 offset-m3">
+                <div class="chat-input valign-wrapper">
+                    <div class="col l12 m-0" id="userInput">
+                        <input id="textInput" type="text" placeholder="Type your message here" />
+                    </div>
+                    <div class="col 1">
+                        <input id="buttonInput" type="image" name="action" src="/static/img/send.svg" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        $('#form').on('submit', function (e) {
+            var msg = $('#textInput').val();
+            console.log("Message", msg)
+            e.preventDefault();
+            $.ajax({
+                url: 'http://localhost:5000/get',
+                data: { 'msg': msg },
+                method: 'POST',
+                success: function (response) {
+                    console.log(response);
+                    document.getElementById('pred_text').innerHTML = response;
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+    </script>
+
+    <!-- predicted text -->
+    <div class="row" style="margin-top:70px">
+        <div class="col s12 m6 offset-m3">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title pink-text accent-1" id="pred_banner">Predicted Text</span>
+                    <p id="pred_text" class="blue-text darken-4">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</html>

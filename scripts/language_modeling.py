@@ -5,10 +5,10 @@ from tqdm import tqdm
 from fastai.callbacks import CSVLogger 
 import argparse
 
-
 base_path = Path('.')
 path = base_path/'judgements.csv'
 BATCH_SIZE = 128
+data_lang_model = load_data(base_path, 'data_lm.pkl')
 
 def train():
       data_lm = load_data(base_path, 'data_lm.pkl', bs=BATCH_SIZE)
@@ -29,6 +29,14 @@ def predict(sentence, n_words):
       print(f"Sentence: {sentence}\nNumber of Words: {n_words}")
       print(" ".join(learn.predict(sentence, n_words, temperature=0.75)
                       for _ in range(1)))
+
+
+def get_stmt(orig_sentence):
+      learn = language_model_learner(data_lang_model, AWD_LSTM, drop_mult=0.3)
+      learn.load('fine_tuned')
+      pred_sentence = " ".join(learn.predict(orig_sentence, 10, temperature=0.75)
+                      for _ in range(1))
+      return orig_sentence, pred_sentence
 
 
 if __name__ == "__main__":
